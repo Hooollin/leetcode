@@ -4,6 +4,9 @@
  * [496] Next Greater Element I
  */
 class Solution {
+
+    // 用stack来存所有还没有找到nextGreaterElement的item,此时栈顶一定是最小的element,
+    // 碰到栈顶大的item就pop并记录，直到没有比这个item更大的为止，最后将item入栈。
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         if (nums2.length == 0 || nums1.length == 0) {
             return new int[0];
@@ -22,10 +25,12 @@ class Solution {
             }
             s.push(i);
         }
+        // 栈不空时要将还在栈内的元素的nextGreaterElementIdx置为-1
         while (!s.isEmpty()) {
             nextGreaterIdxs[s.pop()] = -1;
         }
         int idx = 0;
+
         for (int num : nums1) {
             for (int i = 0; i < nums2.length; i++) {
                 if (nums2[i] == num) {
