@@ -32,4 +32,20 @@ class Solution {
         return evenHead.next;
     }
 
+    public ListNode _oddEvenList(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
+        ListNode oddHead = head;
+        ListNode evenHead = head.next;
+        ListNode op = oddHead, ep = evenHead;
+        while (ep != null && ep.next != null) {
+            op.next = ep.next;
+            op = op.next;
+            ep.next = op.next;
+            ep = ep.next;
+        }
+        op.next = evenHead;
+        return oddHead;
+    }
+
 }
