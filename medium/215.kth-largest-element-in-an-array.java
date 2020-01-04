@@ -50,10 +50,10 @@ class Solution {
                 lo = j + 1;
             } else if (j > k) {
                 hi = j - 1;
-            }
-            return nums[j];
+            } else
+                break;
         }
-        return -1;
+        return nums[k];
     }
 
     public int partition(int[] nums, int lo, int hi) {
