@@ -50,27 +50,30 @@ class Solution {
                 lo = j + 1;
             } else if (j > k) {
                 hi = j - 1;
-            } else
-                break;
+            } else {
+                return nums[j];
+            }
         }
         return nums[k];
     }
 
+    public void swap(int[] nums, int i, int j) {
+        int t = nums[i];
+        nums[i] = nums[j];
+        nums[j] = t;
+    }
+
     public int partition(int[] nums, int lo, int hi) {
-        int pivot = nums[0];
+        int pivot = nums[lo];
         while (lo < hi) {
-            while (lo < hi && nums[hi] > pivot) {
+            while (lo < hi && nums[hi] >= pivot) {
                 hi--;
             }
-            int t = nums[lo];
-            nums[lo] = nums[hi];
-            nums[hi] = t;
-            while (lo < hi && nums[lo] < pivot) {
+            swap(nums, lo, hi);
+            while (lo < hi && nums[lo] <= pivot) {
                 lo++;
             }
-            t = nums[hi];
-            nums[hi] = nums[lo];
-            nums[lo] = t;
+            swap(nums, lo, hi);
         }
         nums[lo] = pivot;
         return lo;
